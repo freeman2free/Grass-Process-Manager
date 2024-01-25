@@ -2,7 +2,7 @@
 //
 
 #include "pch.h"
-#include "ProcessMonitor.h"
+#include "ProcessManager.h"
 #include "WindowMonitor.h"
 #include "afxdialogex.h"
 #include <Psapi.h>

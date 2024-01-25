@@ -1,5 +1,5 @@
 ﻿
-// ProcessMonitorDlg.h: 头文件
+// ProcessManagerDlg.h: 头文件
 //
 
 #pragma once
@@ -8,16 +8,16 @@
 #include "SoftDlg.h"
 #include "WindowMonitor.h"
 
-// CProcessMonitorDlg 对话框
-class CProcessMonitorDlg : public CDialogEx
+// CProcessManagerDlg 对话框
+class CProcessManagerDlg : public CDialogEx
 {
 // 构造
 public:
-	CProcessMonitorDlg(CWnd* pParent = nullptr);	// 标准构造函数
+	CProcessManagerDlg(CWnd* pParent = nullptr);	// 标准构造函数
 
 // 对话框数据
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_PROCESSMONITOR_DIALOG };
+	enum { IDD = IDD_PROCESSMANAGER_DIALOG };
 #endif
 
 	protected:

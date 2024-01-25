@@ -1,8 +1,8 @@
-# Grass Process Monitor
+# Grass Process Manager
 
 ## Decription
 
-​	This is a simple task manager(a.k.a Process Monitor)
+​	This is a simple process manager(a.k.a task manager) by MFC
 
 ## Implemented features
 

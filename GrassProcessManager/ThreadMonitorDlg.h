@@ -27,7 +27,7 @@ protected:
 public:
 	// 线程列表控件
 	CListCtrl m_lstThread;
-
+	// 线程对话框填充
 	void InitThreadList();
 	// 挂起线程
 	afx_msg void OnSuspendThread();

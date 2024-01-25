@@ -2,8 +2,8 @@
 // 用于显示线程信息的对话框
 
 #include "pch.h"
-#include "ProcessMonitor.h"
-#include "ProcessMonitorDlg.h"
+#include "ProcessManager.h"
+#include "ProcessManagerDlg.h"
 #include "ThreadMonitorDlg.h"
 #include "afxdialogex.h"
 #include <TlHelp32.h>
@@ -43,7 +43,6 @@ BOOL ThreadMonitorDlg::OnInitDialog()
 }
 
 
-// 线程对话框填充
 void ThreadMonitorDlg::InitThreadList()
 {
 	// 根据进程ID获取到该进程的所有线程快照

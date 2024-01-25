@@ -1,27 +1,27 @@
 ﻿
-// ProcessMonitor.cpp: 定义应用程序的类行为。
+// ProcessManager.cpp: 定义应用程序的类行为。
 //
 
 #include "pch.h"
 #include "framework.h"
-#include "ProcessMonitor.h"
-#include "ProcessMonitorDlg.h"
+#include "ProcessManager.h"
+#include "ProcessManagerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 
-// CProcessMonitorApp
+// CProcessManagerApp
 
-BEGIN_MESSAGE_MAP(CProcessMonitorApp, CWinApp)
+BEGIN_MESSAGE_MAP(CProcessManagerApp, CWinApp)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
-// CProcessMonitorApp 构造
+// CProcessManagerApp 构造
 
-CProcessMonitorApp::CProcessMonitorApp()
+CProcessManagerApp::CProcessManagerApp()
 {
 	// 支持重新启动管理器
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
@@ -31,14 +31,14 @@ CProcessMonitorApp::CProcessMonitorApp()
 }
 
 
-// 唯一的 CProcessMonitorApp 对象
+// 唯一的 CProcessManagerApp 对象
 
-CProcessMonitorApp theApp;
+CProcessManagerApp theApp;
 
 
-// CProcessMonitorApp 初始化
+// CProcessManagerApp 初始化
 
-BOOL CProcessMonitorApp::InitInstance()
+BOOL CProcessManagerApp::InitInstance()
 {
 	// 如果一个运行在 Windows XP 上的应用程序清单指定要
 	// 使用 ComCtl32.dll 版本 6 或更高版本来启用可视化方式，
@@ -69,7 +69,7 @@ BOOL CProcessMonitorApp::InitInstance()
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
 
-	CProcessMonitorDlg dlg;
+	CProcessManagerDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)

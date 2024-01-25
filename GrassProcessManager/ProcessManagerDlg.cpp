@@ -1,5 +1,5 @@
 ﻿
-// ProcessMonitorDlg.cpp: 实现文件
+// ProcessManagerDlg.cpp: 实现文件
 // MFC实现一个进程管理器(进程List)
 /*功能目前有:
 * 1.显示进程信息
@@ -10,8 +10,8 @@
 */
 #include "pch.h"
 #include "framework.h"
-#include "ProcessMonitor.h"
-#include "ProcessMonitorDlg.h"
+#include "ProcessManager.h"
+#include "ProcessManagerDlg.h"
 #include "afxdialogex.h"
 #include <TlHelp32.h>
 #include <Psapi.h>
@@ -20,41 +20,41 @@
 #endif
 // 保存进程ID以便进程调用
 DWORD g_dwProcessId = 0;
-// CProcessMonitorDlg 对话框
+// CProcessManagerDlg 对话框
 
 
 
-CProcessMonitorDlg::CProcessMonitorDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_PROCESSMONITOR_DIALOG, pParent)
+CProcessManagerDlg::CProcessManagerDlg(CWnd* pParent /*=nullptr*/)
+	: CDialogEx(IDD_PROCESSMANAGER_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
-void CProcessMonitorDlg::DoDataExchange(CDataExchange* pDX)
+void CProcessManagerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST_PROCESS, m_lstProcess);
 }
 
-BEGIN_MESSAGE_MAP(CProcessMonitorDlg, CDialogEx)
+BEGIN_MESSAGE_MAP(CProcessManagerDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_COMMAND(ID_CHECK_THREAD, &CProcessMonitorDlg::OnCheckThread)
-	ON_COMMAND(ID_KILL_PROCESS, &CProcessMonitorDlg::OnKillProcess)
-	ON_NOTIFY(NM_RCLICK, IDC_LIST_PROCESS, &CProcessMonitorDlg::OnRclickListProcess)
-	ON_COMMAND(ID_FLUSH_PROCESS, &CProcessMonitorDlg::OnFlushProcess)
-	ON_COMMAND(ID_OPEN_MODULE, &CProcessMonitorDlg::OnOpenModule)
-	ON_COMMAND(ID_INJECT_THREAD, &CProcessMonitorDlg::OnInjectThread)
-	ON_COMMAND(ID_RELEASE_THRE, &CProcessMonitorDlg::OnReleaseThread)
+	ON_COMMAND(ID_CHECK_THREAD, &CProcessManagerDlg::OnCheckThread)
+	ON_COMMAND(ID_KILL_PROCESS, &CProcessManagerDlg::OnKillProcess)
+	ON_NOTIFY(NM_RCLICK, IDC_LIST_PROCESS, &CProcessManagerDlg::OnRclickListProcess)
+	ON_COMMAND(ID_FLUSH_PROCESS, &CProcessManagerDlg::OnFlushProcess)
+	ON_COMMAND(ID_OPEN_MODULE, &CProcessManagerDlg::OnOpenModule)
+	ON_COMMAND(ID_INJECT_THREAD, &CProcessManagerDlg::OnInjectThread)
+	ON_COMMAND(ID_RELEASE_THRE, &CProcessManagerDlg::OnReleaseThread)
 	ON_WM_SIZE()
-	ON_BN_CLICKED(IDC_BUTTON_ALLSOFT, &CProcessMonitorDlg::OnBnClickedButtonAllSoft)
-	ON_BN_CLICKED(IDC_BUTTON_WINDOW, &CProcessMonitorDlg::OnBnClickedButtonWindow)
+	ON_BN_CLICKED(IDC_BUTTON_ALLSOFT, &CProcessManagerDlg::OnBnClickedButtonAllSoft)
+	ON_BN_CLICKED(IDC_BUTTON_WINDOW, &CProcessManagerDlg::OnBnClickedButtonWindow)
 END_MESSAGE_MAP()
 
 
-// CProcessMonitorDlg 消息处理程序
+// CProcessManagerDlg 消息处理程序
 
-BOOL CProcessMonitorDlg::OnInitDialog()
+BOOL CProcessManagerDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
@@ -88,7 +88,7 @@ BOOL CProcessMonitorDlg::OnInitDialog()
 //  来绘制该图标。  对于使用文档/视图模型的 MFC 应用程序，
 //  这将由框架自动完成。
 
-void CProcessMonitorDlg::OnPaint()
+void CProcessManagerDlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -115,12 +115,12 @@ void CProcessMonitorDlg::OnPaint()
 
 //当用户拖动最小化窗口时系统调用此函数取得光标
 //显示。
-HCURSOR CProcessMonitorDlg::OnQueryDragIcon()
+HCURSOR CProcessManagerDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-void CProcessMonitorDlg::RePaint(UINT uID, int iLastWidth, int iNowWidth, int iLastHeight, int iNowHeight)
+void CProcessManagerDlg::RePaint(UINT uID, int iLastWidth, int iNowWidth, int iLastHeight, int iNowHeight)
 {
 	CRect rect;
 	CWnd* wnd = NULL;
@@ -138,7 +138,7 @@ void CProcessMonitorDlg::RePaint(UINT uID, int iLastWidth, int iNowWidth, int iL
 	wnd->MoveWindow(&rect);
 }
 
-void CProcessMonitorDlg::InitProcessList()
+void CProcessManagerDlg::InitProcessList()
 {
 	DWORD dwIndex = 0;
 	HANDLE hSnapProcess = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL); // 创建所有进程的快照对象
@@ -205,7 +205,7 @@ void CProcessMonitorDlg::InitProcessList()
 
 
 // 点击后查看线程(弹出线程对话框)
-void CProcessMonitorDlg::OnCheckThread()
+void CProcessManagerDlg::OnCheckThread()
 {
 	// 想查看一个进程的线程需要获取该线程的句柄
 	// 根据选中的地方确定是哪个进程
@@ -222,7 +222,7 @@ void CProcessMonitorDlg::OnCheckThread()
 }
 
 // 右键菜单弹出
-void CProcessMonitorDlg::OnRclickListProcess(NMHDR* pNMHDR, LRESULT* pResult)
+void CProcessManagerDlg::OnRclickListProcess(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 	// TODO: 在此添加控件通知处理程序代码
@@ -236,7 +236,7 @@ void CProcessMonitorDlg::OnRclickListProcess(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 // 结束进程
-void CProcessMonitorDlg::OnKillProcess()
+void CProcessManagerDlg::OnKillProcess()
 {
 	// 根据选中的地方确定是哪个进程
 	int iPos = (int)m_lstProcess.GetFirstSelectedItemPosition();
@@ -259,14 +259,14 @@ void CProcessMonitorDlg::OnKillProcess()
 }
 
 // 刷新列表
-void CProcessMonitorDlg::OnFlushProcess()
+void CProcessManagerDlg::OnFlushProcess()
 {
 	m_lstProcess.DeleteAllItems();
 	InitProcessList();
 }
 
 // 打开指定进程的模块列表
-void CProcessMonitorDlg::OnOpenModule()
+void CProcessManagerDlg::OnOpenModule()
 {
 
 	// 想查看一个进程的线程需要获取该线程的句柄
@@ -283,7 +283,7 @@ void CProcessMonitorDlg::OnOpenModule()
 }
 
 
-void CProcessMonitorDlg::OnInjectThread()
+void CProcessManagerDlg::OnInjectThread()
 {
 	// 根据选中的地方确定是哪个进程
 	int iPos = (int)m_lstProcess.GetFirstSelectedItemPosition();
@@ -297,7 +297,7 @@ void CProcessMonitorDlg::OnInjectThread()
 }
 
 // 注入到指定进程中(根据进程的ID找到进程之后注入)
-void CProcessMonitorDlg::OnInjectThread(DWORD dwPID, TCHAR* szPath)
+void CProcessManagerDlg::OnInjectThread(DWORD dwPID, TCHAR* szPath)
 {
 	// 获取到进程的句柄
 	HANDLE hInjectProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPID);
@@ -354,7 +354,7 @@ void CProcessMonitorDlg::OnInjectThread(DWORD dwPID, TCHAR* szPath)
 }
 
 // 卸载注入的线程
-void CProcessMonitorDlg::OnReleaseThread()
+void CProcessManagerDlg::OnReleaseThread()
 {
 	int iPos = (int)m_lstProcess.GetFirstSelectedItemPosition();
 	iPos -= 1;
@@ -375,7 +375,7 @@ void CProcessMonitorDlg::OnReleaseThread()
 }
 
 // 使列表尺寸随着窗口尺寸一起变化
-void CProcessMonitorDlg::OnSize(UINT nType, int cx, int cy)
+void CProcessManagerDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
@@ -402,7 +402,7 @@ void CProcessMonitorDlg::OnSize(UINT nType, int cx, int cy)
 }
 
 // 查看当前系统所有已安装软件信息()
-void CProcessMonitorDlg::OnBnClickedButtonAllSoft()
+void CProcessManagerDlg::OnBnClickedButtonAllSoft()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CSoftDlg cSoftDlg;
@@ -410,7 +410,7 @@ void CProcessMonitorDlg::OnBnClickedButtonAllSoft()
 }
 
 
-void CProcessMonitorDlg::OnBnClickedButtonWindow()
+void CProcessManagerDlg::OnBnClickedButtonWindow()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CWindowMonitor cWindowDlg;

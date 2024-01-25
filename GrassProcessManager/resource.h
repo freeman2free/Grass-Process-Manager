@@ -1,8 +1,8 @@
 ﻿//{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ 生成的包含文件。
-// 供 ProcessMonitor.rc 使用
+// 供 ProcessManager.rc 使用
 //
-#define IDD_PROCESSMONITOR_DIALOG       102
+#define IDD_PROCESSMANAGER_DIALOG       102
 #define IDR_MAINFRAME                   128
 #define IDR_MENU_PROCESS                130
 #define IDR_MENU_THREAD                 131

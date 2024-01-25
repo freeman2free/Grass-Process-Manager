@@ -2,8 +2,8 @@
 // 用于显示模块信息的对话框
 
 #include "pch.h"
-#include "ProcessMonitor.h"
-#include "ProcessMonitorDlg.h"
+#include "ProcessManager.h"
+#include "ProcessManagerDlg.h"
 #include "ModuleDialog.h"
 #include "afxdialogex.h"
 #include <TlHelp32.h>

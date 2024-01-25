@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ProcessMonitor.h">
+    <ClInclude Include="ProcessManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ProcessMonitorDlg.h">
+    <ClInclude Include="ProcessManagerDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
@@ -47,10 +47,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ProcessMonitor.cpp">
+    <ClCompile Include="ProcessManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ProcessMonitorDlg.cpp">
+    <ClCompile Include="ProcessManagerDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -70,17 +70,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ProcessMonitor.rc">
+    <ResourceCompile Include="ProcessManager.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\ProcessMonitor.rc2">
+    <None Include="res\ProcessManager.rc2">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\ProcessMonitor.ico">
+    <Image Include="res\ProcessManager.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

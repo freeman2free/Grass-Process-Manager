@@ -1,5 +1,5 @@
 ﻿
-// ProcessMonitor.h: PROJECT_NAME 应用程序的主头文件
+// ProcessManager.h: PROJECT_NAME 应用程序的主头文件
 //
 
 #pragma once
@@ -11,14 +11,14 @@
 #include "resource.h"		// 主符号
 
 
-// CProcessMonitorApp:
-// 有关此类的实现，请参阅 ProcessMonitor.cpp
+// CProcessManagerApp:
+// 有关此类的实现，请参阅 ProcessManager.cpp
 //
 
-class CProcessMonitorApp : public CWinApp
+class CProcessManagerApp : public CWinApp
 {
 public:
-	CProcessMonitorApp();
+	CProcessManagerApp();
 
 // 重写
 public:
@@ -29,4 +29,4 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CProcessMonitorApp theApp;
+extern CProcessManagerApp theApp;
